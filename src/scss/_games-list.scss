@@ -1,0 +1,28 @@
+@import './config';
+@import './variables';
+
+.games-list-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.games-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.no-games {
+}
+
+.searching {
+    font-size: 2rem;
+}
+
+.please-use {
+    font-size: 1.5rem;
+    margin: 20px;
+    padding: 20px;
+}

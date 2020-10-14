@@ -1,0 +1,17 @@
+@import './variables';
+@import './mixins';
+@import './game-details';
+@import './config';
+
+.favorites-list {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    width: 60% !important;
+    margin: 50px auto;
+}
+
+.image-and-delete {
+    @include flexRowSpaceBetween;
+}

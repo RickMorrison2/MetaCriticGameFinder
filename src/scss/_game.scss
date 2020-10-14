@@ -1,0 +1,80 @@
+@import './variables';
+@import './mixins';
+
+.rmd-card {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin: 20px;
+    justify-content: center;
+
+    #{&}__header {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+        background-color: $dark-blue;
+        border-radius: 10px 10px 0px 0px;
+    }
+
+    #{&}__content {
+    }
+}
+
+.game {
+    width: 60%;
+}
+
+.title-and-score {
+    @include flexRowSpaceBetween;
+}
+
+.title-wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.platform {
+    font-size: 0.9rem;
+    font-weight: 400;
+}
+
+.image-and-content {
+    @include flexRowSpaceBetween;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 60%;
+}
+
+.description {
+    font-size: 1.2rem !important;
+}
+
+.favorite {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+@media (max-width: 499px) {
+    .game {
+        width: 80%;
+    }
+    .image-and-content {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    .content {
+        width: 100%;
+    }
+    .description {
+        font-size: 1rem !important;
+        font-weight: 400 !important;
+        margin-top: 20px !important;
+    }
+}

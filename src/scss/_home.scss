@@ -1,0 +1,60 @@
+@import './variables';
+@import './mixins';
+@import './games-list';
+@import './game';
+@import './search-bar';
+@import './game-details';
+
+.green-score {
+    background-color: $green-score;
+    color: #ffffff;
+    padding: 10px;
+    margin: 5px;
+    border-radius: 5px;
+}
+
+.yellow-score {
+    background-color: $yellow-score;
+    color: #000000;
+    padding: 10px;
+    margin: 5px;
+    border-radius: 5px;
+}
+
+.red-score {
+    background-color: $red-score;
+    color: #ffffff;
+    padding: 10px;
+    margin: 5px;
+    border-radius: 5px;
+}
+
+.gray-score {
+    background-color: $gray-score;
+    color: #ffffff;
+    padding: 10px;
+    margin: 5px;
+    border-radius: 5px;
+}
+
+@media (max-width: 499px) {
+    .green-score {
+        width: auto;
+        height: 50px;
+    }
+
+    .yellow-score {
+        width: auto;
+        height: 50px;
+    }
+
+    .red-score {
+        width: auto;
+        height: 50px;
+    }
+
+    .gray-score {
+        width: auto;
+        height: 50px;
+    }
+}

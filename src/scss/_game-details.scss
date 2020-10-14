@@ -1,0 +1,42 @@
+@import './variables';
+@import './mixins';
+
+.card-container {
+    @include flexRowCenter;
+}
+
+.details-image-and-desc {
+    @include flexRowSpaceBetween;
+}
+
+.detailed-desc {
+    width: 60% !important;
+    margin-left: 20px !important;
+    font-size: 1.1rem !important;
+}
+
+.details-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.rmd-typography--headline-6 {
+    font-size: 0.9rem !important;
+}
+
+.favorite-icon {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+@media (max-width: 499px) {
+    .details-image-and-desc {
+        flex-direction: column;
+    }
+    .detailed-desc {
+        width: 90% !important;
+        font-size: 1rem !important;
+    }
+}
