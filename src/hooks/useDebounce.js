@@ -1,9 +1,9 @@
-import { useState, useEffect } from 'react';
-
-export default function useDebounce(value, delay) {
-    const [debouncedValue, setDebouncedValue] = useState(value);
-
-    useEffect(() => {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const react_1 = require("react");
+function useDebounce(value, delay) {
+    const [debouncedValue, setDebouncedValue] = react_1.useState(value);
+    react_1.useEffect(() => {
         const handler = setTimeout(() => {
             setDebouncedValue(value);
         }, delay);
@@ -13,3 +13,5 @@ export default function useDebounce(value, delay) {
     }, [delay, value]);
     return debouncedValue;
 }
+exports.default = useDebounce;
+//# sourceMappingURL=useDebounce.js.map

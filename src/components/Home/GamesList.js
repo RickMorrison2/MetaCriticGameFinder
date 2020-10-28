@@ -1,76 +1,70 @@
-import React, { useContext } from 'react';
-import axios from 'axios';
-import { Context } from '../../store/Store';
-import Game from './Game';
-
+"use strict";
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const React = __importStar(require("react"));
+const axios_1 = __importDefault(require("axios"));
+const Game_1 = __importDefault(require("./Game"));
+const Store_1 = require("../../store/Store");
 const GamesList = (props) => {
-    const [state, dispatch] = useContext(Context);
-
+    const { setSelectedGame, data } = Store_1.useGameState();
     const clickHandler = (game) => {
         const platform = props.transform(game);
-        axios({
+        axios_1.default({
             method: 'GET',
             url: `https://chicken-coop.p.rapidapi.com/games/${game.title.toLowerCase()}?platform=${platform}`,
             headers: {
                 'x-rapidapi-host': 'chicken-coop.p.rapidapi.com',
-                'x-rapidapi-key':
-                    'f095ed5092mshd6d7d19e4a78f68p1978cfjsnbe9e447696cc',
+                'x-rapidapi-key': 'f095ed5092mshd6d7d19e4a78f68p1978cfjsnbe9e447696cc',
             },
         }).then((res) => {
             console.log('clicked, res.data: ', res.data);
-            const resGame = { ...res.data.result, platform: game.platform };
-            dispatch({ type: 'SET_SELECTED_GAME', payload: resGame });
+            const resGame = Object.assign(Object.assign({}, res.data.result), { platform: game.platform });
+            setSelectedGame(resGame);
         });
     };
-
     let games;
-
-    if (
-        state.searchTouched &&
-        state.updatedGamesList &&
-        state.updatedGamesList.length !== 0
-    ) {
-        games = (
-            <div className="games-list">
-                {state.updatedGamesList.map((game, index) => (
-                    <Game
-                        className="game"
-                        {...game}
-                        position={index}
-                        transform={props.transform}
-                        scoreColor={props.scoreColor}
-                        key={index}
-                        click={() => clickHandler(game)}
-                    />
-                ))}
-            </div>
-        );
-    } else if (
-        state.searchTouched &&
-        !state.isSearching &&
-        state.gamesList.length === 0
-    ) {
-        games = (
-            <div className="no-games">
-                No games found matching that title. Please try another search.
-            </div>
-        );
-    } else if (
-        state.isSearching ||
-        (state.gamesList.length !== 0 &&
-            state.gamesList.length !== state.updatedGamesList.length)
-    ) {
-        games = <div className="searching">Searching...</div>;
-    } else {
-        games = (
-            <div className="please-use">
-                Welcome to the MetaCritic Game Finder. Please use the search bar
-                above to start finding games.
-            </div>
-        );
+    if (data.searchTouched &&
+        data.updatedGamesList &&
+        data.updatedGamesList.length !== 0) {
+        games = (React.createElement("div", { className: "games-list" }, data.updatedGamesList.map((game, index) => (React.createElement(Game_1.default, Object.assign({ className: "game" }, game, { position: index, transform: props.transform, scoreColor: props.scoreColor, key: index, click: () => clickHandler(game) }))))));
     }
-
-    return <div className="games-list-container">{games}</div>;
+    else if (data.searchTouched &&
+        !data.isSearching &&
+        data.gamesList &&
+        data.gamesList.length === 0) {
+        games = (React.createElement("div", { className: "no-games" }, "No games found matching that title. Please try another search."));
+    }
+    else if (data.isSearching
+        ||
+            (data.gamesList && data.gamesList.length !== 0 &&
+                data.gamesList.length !== data.updatedGamesList.length)) {
+        games = React.createElement("div", { className: "searching" }, "Searching...");
+    }
+    else {
+        games = (React.createElement("div", { className: "please-use" }, "Welcome to the MetaCritic Game Finder. Please use the search bar above to start finding games."));
+    }
+    return React.createElement("div", { className: "games-list-container" }, games);
 };
-
-export default GamesList;
+exports.default = GamesList;
+//# sourceMappingURL=GamesList.js.map
